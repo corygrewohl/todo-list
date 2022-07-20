@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todoodles</title>
+  </head>
+  <body>
+    <!-- Project Modal -->
+    <div id="modal-container">
+      <h1 id="modal-title"></h1>
+      <div class="modal-content">
+        <input type="text" id="project-name" />
+        <div class="modal-container-btn">
+          <button id="submit">Submit</button>
+          <button id="cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div id="modal-container-task">
+      <h1 id="modal-title"></h1>
+      <div class="modal-content">
+        <div class="modal-container-btn">
+          <form id="modal-task-body">
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="Title"
+              required
+            />
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Description"
+            />
+            <input
+              type="datetime-local"
+              id="dueDate"
+              name="dueDate"
+              placeholder="Due Date"
+            />
+            <select name="priority" id="priority">
+              <option disabled hidden selected>
+                Select Priority
+              </option>
+              <option value="A">A (urgent)</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="F">F (not urgent)</option>
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="sidebar">
+      <div class="sidebar-logo"><a href="#">Todoodles</a></div>
+      <div class="project-controller">
+        <button id="add-project">+ Add Project</button>
+      </div>
+      <div class="project-list">ge</div>
+    </div>
+    <div id="header">
+      <button id="add-task">Add Task</button>
+    </div>
+    <main></main>
+    <div id="overlay"></div>
+  </body>
+</html>
