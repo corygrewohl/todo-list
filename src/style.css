@@ -75,7 +75,7 @@ button {
   font-size: 36px;
 }
 
-.project-controller, .project-list {
+#project-controller, #project-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -165,7 +165,7 @@ main {
 }
 
 #modal-container-task {
-  height: 350px;
+  height: 400px;
 }
 
 #modal-container-task form {
@@ -176,9 +176,9 @@ main {
   gap: 10px;
 }
 
-#modal-container-task form *{
+h2 {
+  border: none;
   color: black;
-  border: black 2px solid;
 }
 
 #overlay.active {

@@ -6,6 +6,10 @@ import "./style.css";
 const projectArray = [];
 setup();
 
+function clearFormData(){
+  //TODO
+}
+
 function createProject(name) {
   let newProject = new Project(name);
   projectArray.push(newProject);
@@ -16,13 +20,19 @@ function newProjectSubmit() {
   const projectInput = document.getElementById("project-name");
   createProject(projectInput.value);
   projectInput.value = "";
-  closeModal("project");
+  closeModal();
 }
 
 function cancelNewProject() {
   const projectInput = document.getElementById("project-name");
   projectInput.value = "";
-  closeModal("project");
+  closeModal();
+}
+
+function cancelNewTask(){
+  const taskForm = document.getElementById("modal-task-body")
+  taskForm.reset()
+  closeModal();
 }
 
 function createTask(
@@ -34,10 +44,15 @@ function createTask(
   difficulty
 ) {
   console.log();
-  if (projectArray.length == 0) return;
+  if (projectArray.length == 0) {
+    closeModal();
+    return;
+  }
   let newTask = new Task(title, description, dueDate, priority, difficulty);
   projectArray[project].taskArray.push(newTask);
   console.log(projectArray);
+
+  closeModal();
 }
 
 function testCreateTask() {
@@ -55,20 +70,16 @@ function getData() {
   const form = document.getElementById("modal-task-body");
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    console.log(event.target[0].value);
-  });
-  const title = form[0].value;
-  const description = form[1].value;
-  const dueDate = form[2].value;
 
-  // form?.addEventListener("submit", (event) => {
-  //   event.preventDefault();
-  
-  //   const EventForm = new FormData(event.target);
-    
-  //   const Title = EventForm.get("title");
-  //   console.log(Title);
-  // });
+    const EventForm = new FormData(event.target);
+    const title = EventForm.get("title");
+    const description = EventForm.get("description");
+    const dueDate = EventForm.get("dueDate");
+    const priority = EventForm.get("priority");
+
+    createTask(0, title, description, dueDate, priority, "forgot to add difficulty to form D:");
+    form.reset();
+  });
 }
 
 function setup() {
@@ -87,4 +98,9 @@ function setup() {
   let taskForm = document.getElementById("modal-task-body");
   taskForm.setAttribute("onsubmit", getData());
 
+  let taskCancel = document.getElementById("cancelTask")
+  taskCancel.addEventListener("click", cancelNewTask, false)
+
+  let overlay = document.getElementById("overlay");
+  overlay.addEventListener("click", closeModal, false)
 }

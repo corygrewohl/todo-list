@@ -11,6 +11,7 @@
     <div id="modal-container">
       <h1 id="modal-title"></h1>
       <div class="modal-content">
+        <h2>Create New Project</h2>
         <input type="text" id="project-name" />
         <div class="modal-container-btn">
           <button id="submit">Submit</button>
@@ -24,6 +25,7 @@
       <h1 id="modal-title"></h1>
       <div class="modal-content">
         <div class="modal-container-btn">
+          <h2>Create New Task</h2>
           <form id="modal-task-body">
             <input
               type="text"
@@ -54,7 +56,10 @@
               <option value="D">D</option>
               <option value="F">F (not urgent)</option>
             </select>
-            <button type="submit">Submit</button>
+            <div class="modal-container-btn">
+              <button type="submit">Submit</button>
+              <button id="cancelTask">Cancel</button>
+            </div>
           </form>
         </div>
       </div>
@@ -62,10 +67,12 @@
 
     <div id="sidebar">
       <div class="sidebar-logo"><a href="#">Todoodles</a></div>
-      <div class="project-controller">
+      <div id="project-controller">
         <button id="add-project">+ Add Project</button>
       </div>
-      <div class="project-list">ge</div>
+      <div id="project-list">
+        
+      </div>
     </div>
     <div id="header">
       <button id="add-task">Add Task</button>
