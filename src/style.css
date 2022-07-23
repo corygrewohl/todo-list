@@ -56,6 +56,12 @@ button {
   vertical-align: middle;
 }
 
+#sidebar .project-list-container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+}
+
 #sidebar button {
   padding: 10px;
   background-color: #166534;
@@ -65,11 +71,14 @@ button {
   cursor: pointer;
   text-align: left;
   width: max-content;
+
+  display: flex;
 }
 
 #sidebar button:hover {
   background-color: #125b2e;
 }
+
 
 .sidebar-logo {
   font-size: 36px;
@@ -81,24 +90,64 @@ button {
   gap: 20px;
 }
 
+#project-list button{
+  width: 97%;
+  height: 97%;
+}
+
+.active-project, .active-project *{
+  background-color: black;
+}
+
 main {
   background-color: var(--main);
+}
+
+#task-grid {
+  display: grid;
+  grid-auto-rows: 200px;
+  gap: 30px;
+  padding: 30px;
+}
+
+.task-grid-item {
+  background-color: #A393BF;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+@media (min-width: 80em) {
+  #task-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 350px;
+  }
+}
+
+@media (min-width: 60em) and (max-width: 80em) {
+  #task-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 #header {
   background-color: var(--header);
   height: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   
   padding: 20px;
+}
+
+#header-title {
+  font-size: 36px;
 }
 
 #header button {
   background-color: #A393BF;
   color: white;
   border: white 3px solid;
+  width: 175px
 }
 
 #header button:hover {
@@ -192,6 +241,18 @@ h2 {
   width: 100vw;
 }
 
-iframe {
+#footer {
+  display: block;
+  position: fixed;
+  height: 30px;
+  background-color: black;
+  color: #999;
+  bottom: 0;
+  width: 100%;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.current-project {
   display: none;
 }
