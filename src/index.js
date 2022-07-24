@@ -1,5 +1,10 @@
 import { addProjectModal, closeModal, addTaskModal } from "./modal.js";
-import {cancelNewProject, newProjectSubmit, getData, cancelNewTask} from "./displayController.js";
+import {
+  cancelNewProject,
+  newProjectSubmit,
+  getData,
+  cancelNewTask,
+} from "./displayController.js";
 import "./style.css";
 
 setup();
@@ -20,9 +25,9 @@ function setup() {
   let taskForm = document.getElementById("modal-task-body");
   taskForm.setAttribute("onsubmit", getData());
 
-  let taskCancel = document.getElementById("cancelTask")
-  taskCancel.addEventListener("click", cancelNewTask, false)
+  let taskCancel = document.getElementById("cancelTask");
+  taskCancel.addEventListener("click", cancelNewTask, false);
 
   let overlay = document.getElementById("overlay");
-  overlay.addEventListener("click", closeModal, false)
+  overlay.addEventListener("click", closeModal, false);
 }

@@ -63,7 +63,8 @@ button {
   border-radius: 8px;
 }
 
-.project-list-container > button, #add-project {
+.project-list-container > button,
+#add-project {
   padding: 10px;
   background-color: #166534;
   font-size: 24px;
@@ -75,7 +76,9 @@ button {
   display: flex;
 }
 
-.project-list-container:hover, .project-list-container:hover > button, #add-project:hover {
+.project-list-container:hover,
+.project-list-container:hover > button,
+#add-project:hover {
   background-color: #125b2e;
 }
 
@@ -88,18 +91,20 @@ button {
   font-size: 36px;
 }
 
-#project-controller, #project-list {
+#project-controller,
+#project-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-#project-list button{
+#project-list button {
   width: 97%;
   height: 97%;
 }
 
-.active-project, .active-project > button{
+.active-project,
+.active-project > button {
   background-color: #14532d;
 }
 
@@ -115,7 +120,7 @@ main {
 }
 
 .task-grid-item {
-  background-color: #A393BF;
+  background-color: #a393bf;
   border-radius: 8px;
   padding: 10px;
   font-size: 20px;
@@ -123,10 +128,9 @@ main {
   position: relative;
 }
 
-.task-grid-item:hover{
+.task-grid-item:hover {
   transform: skew(2deg, -2deg);
   box-shadow: -10px 6px 5px gray;
-
 }
 
 .task-title {
@@ -136,7 +140,7 @@ main {
 
 .delete-task-button {
   font-size: 48px;
-  background-color: #A393BF;
+  background-color: #a393bf;
   width: 50px;
   height: 50px;
   display: flex;
@@ -179,14 +183,16 @@ main {
   margin: 5px;
 }
 
-#header button, #modal-container-task button {
-  background-color: #A393BF;
+#header button,
+#modal-container-task button {
+  background-color: #a393bf;
   color: white;
   border: none;
-  width: 175px
+  width: 175px;
 }
 
-#header button:hover, #modal-container-task button:hover {
+#header button:hover,
+#modal-container-task button:hover {
   /*background-color: white;*/
   /*color: #A393BF;*/
   border: white 3px solid;
@@ -194,15 +200,15 @@ main {
 }
 
 #header button:active {
-  background-color: #A393BF;
+  background-color: #a393bf;
 }
 
 #header button {
   align-self: center;
-
 }
 
-#modal-container, #modal-container-task{
+#modal-container,
+#modal-container-task {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -213,12 +219,13 @@ main {
   height: 200px;
   width: 400px;
   padding: 10px;
-  background-color:#f0fdf4;
+  background-color: #f0fdf4;
   border-radius: 20px;
   text-align: center;
 }
 
-#modal-container.active, #modal-container-task.active {
+#modal-container.active,
+#modal-container-task.active {
   display: block;
 }
 
@@ -230,7 +237,9 @@ main {
   height: 100%;
 }
 
-#project-name, #modal-container-task form input, #modal-container-task form select  {
+#project-name,
+#modal-container-task form input,
+#modal-container-task form select {
   border: black solid 3px;
   border-radius: 4px;
   color: black;
@@ -240,12 +249,14 @@ main {
   width: 300px;
 }
 
-label, option {
+label,
+option {
   color: black;
   font-size: 22px;
 }
 
-#submit, #cancel {
+#submit,
+#cancel {
   height: 50px;
   width: 160px;
   font-size: 36px;
@@ -254,13 +265,16 @@ label, option {
   background-color: #4ade80;
 }
 
-#submit:hover, #cancel:hover{
+#submit:hover,
+#cancel:hover {
   border: black 3px solid;
   background-color: #166534;
   transition: background-color 0.2s;
 }
 
-#submit:active, #cancel:active, #modal-container-task button:active{
+#submit:active,
+#cancel:active,
+#modal-container-task button:active {
   background-color: #166534;
 }
 
