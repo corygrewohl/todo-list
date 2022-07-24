@@ -19,6 +19,11 @@ function closeModal() {
 }
 
 function addTaskModal() {
+  if(document.querySelector(".current-project").id == ""){
+    alert("Select a project or create one and select it first!")
+    return;
+  }
+
   const modal = document.getElementById("modal-container-task");
   const overlay = document.getElementById("overlay");
 

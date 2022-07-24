@@ -15,7 +15,7 @@ body {
 
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 7fr;
 
   height: 100vh;
   font-family: "Rubik", sans-serif;
@@ -60,14 +60,14 @@ button {
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: center;
+  border-radius: 8px;
 }
 
-#sidebar button {
+.project-list-container > button, #add-project {
   padding: 10px;
   background-color: #166534;
   font-size: 24px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   text-align: left;
   width: max-content;
@@ -75,10 +75,14 @@ button {
   display: flex;
 }
 
-#sidebar button:hover {
+.project-list-container:hover, .project-list-container:hover > button, #add-project:hover {
   background-color: #125b2e;
 }
 
+#sidebar p {
+  text-align: center;
+  margin-top: 10px;
+}
 
 .sidebar-logo {
   font-size: 36px;
@@ -95,8 +99,8 @@ button {
   height: 97%;
 }
 
-.active-project, .active-project *{
-  background-color: black;
+.active-project, .active-project > button{
+  background-color: #14532d;
 }
 
 main {
@@ -115,11 +119,37 @@ main {
   border-radius: 8px;
   padding: 10px;
   font-size: 20px;
+  transition: 0.2s;
+  position: relative;
+}
+
+.task-grid-item:hover{
+  transform: skew(2deg, -2deg);
+  box-shadow: -10px 6px 5px gray;
+
 }
 
 .task-title {
   font-size: 32px;
   margin: 6px;
+}
+
+.delete-task-button {
+  font-size: 48px;
+  background-color: #A393BF;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.delete-task-button:hover {
+  color: black;
 }
 
 @media (min-width: 80em) {
@@ -140,28 +170,36 @@ main {
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  
-  padding: 20px;
+  align-items: flex-end;
+  padding: 0 20px 2px 20px;
 }
 
 #header-title {
   font-size: 36px;
+  margin: 5px;
 }
 
-#header button {
+#header button, #modal-container-task button {
   background-color: #A393BF;
   color: white;
-  border: white 3px solid;
+  border: none;
   width: 175px
 }
 
-#header button:hover {
-  background-color: #4C2C69;
+#header button:hover, #modal-container-task button:hover {
+  /*background-color: white;*/
+  /*color: #A393BF;*/
+  border: white 3px solid;
+  transition: border 0.07s;
 }
 
 #header button:active {
   background-color: #A393BF;
+}
+
+#header button {
+  align-self: center;
+
 }
 
 #modal-container, #modal-container-task{
@@ -207,7 +245,7 @@ label, option {
   font-size: 22px;
 }
 
-#submit, #cancel, #modal-container-task button {
+#submit, #cancel {
   height: 50px;
   width: 160px;
   font-size: 36px;
@@ -216,11 +254,13 @@ label, option {
   background-color: #4ade80;
 }
 
-#submit:hover, #cancel:hover {
-  background-color:#38bb68;
+#submit:hover, #cancel:hover{
+  border: black 3px solid;
+  background-color: #166534;
+  transition: background-color 0.2s;
 }
 
-#submit:active, #cancel:active{
+#submit:active, #cancel:active, #modal-container-task button:active{
   background-color: #166534;
 }
 

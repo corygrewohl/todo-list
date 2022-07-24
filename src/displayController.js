@@ -72,8 +72,10 @@ function displayTasks(){
     const taskGrid = document.getElementById("task-grid")
     taskGrid.textContent = ""
 
+    let index = 0
     projectArray[currentProjectElement.id].taskArray.forEach(task => {
-        formatTask(task, taskGrid)
+        formatTask(task, taskGrid, index)
+        index++
     })
 }
 
@@ -160,8 +162,9 @@ function cancelNewTask(){
     closeModal();
 }
 
-function formatTask(task, taskGrid) {
+function formatTask(task, taskGrid, index) {
     const projectTask = document.createElement("div");
+    projectTask.setAttribute("data-taskNum", index)
 
     const projectTitle = document.createElement("p")
     projectTitle.textContent = task.title;
@@ -176,7 +179,7 @@ function formatTask(task, taskGrid) {
     }
     if(task.dueDate !== "") {
         const projectDueDate = document.createElement("p")
-        const formattedDate = format(new Date(task.dueDate), "h':'maaa MM/dd/yyyy")
+        const formattedDate = format(new Date(task.dueDate), "h':'mmaaa MM/dd/yyyy")
         projectDueDate.textContent = `Due Date: ${formattedDate}`
         projectTask.appendChild(projectDueDate)
         console.log(task.dueDate)
@@ -191,8 +194,8 @@ function formatTask(task, taskGrid) {
     const deleteTaskButton = document.createElement("button")
     deleteTaskButton.innerHTML = "&times;"
     deleteTaskButton.addEventListener("click", deleteTask)
-
-    // projectTask.appendChild(deleteTaskButton)
+    deleteTaskButton.classList.add("delete-task-button")
+    projectTask.appendChild(deleteTaskButton)
 
     projectTask.classList.add("task-grid-item")
 
@@ -200,7 +203,9 @@ function formatTask(task, taskGrid) {
 }
 
 function deleteTask(e){
-
+    let indexToRemove = e.target.parentElement.dataset.tasknum
+    projectArray[currentProjectElement.id].taskArray.splice(indexToRemove, 1)
+    e.target.parentElement.remove()
 }
 
 /////////////////
