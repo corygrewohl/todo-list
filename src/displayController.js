@@ -1,6 +1,7 @@
 import {closeModal} from "./modal";
 import {Project} from "./project";
 import {Task} from "./task";
+import {format} from "date-fns";
 
 const currentProjectElement = document.querySelector(".current-project")
 const projectArray = [];
@@ -42,57 +43,40 @@ function projectListDOMSetup(index, project) {
     deleteProjectButton.addEventListener("click", deleteProject)
     projectButtonContainer.appendChild(deleteProjectButton)
 
-
     return projectButtonContainer;
 }
 
 function updateHeaderProject(){
-    const headerTitle = document.getElementById("header-title")
-    headerTitle.textContent = "Current Project: " + projectArray[currentProjectElement.id].name
+    document.getElementById("header-title").textContent = "Current Project: " + projectArray[currentProjectElement.id].name
 }
 
+//FIXME Styling needs fixing
 function highlightActiveTab(){
     const projectList = document.getElementById("project-list").getElementsByTagName('div')
     for (let i = 0; i < projectList.length; i++){
         projectList[i].classList.remove("active-project")
     }
     projectList[currentProjectElement.id].classList.add("active-project");
-    projectList[currentProjectElement.id].childNodes[0].classList.add("active-project")
 
 }
 
 function displayTasks(){
     if(projectArray.length === 0){
         alert("Oops you haven't made a project yet!")
-        console.log("must create a project before being able to display tasks")
-        console.log(currentProjectElement.id)
         return;
     }
-
     if(currentProjectElement.id == ""){
         alert("Choose a project to add a task to first!")
-        console.log("select a project first")
-        console.log(currentProjectElement.id)
         return;
     }
-
-    console.log("id: " + currentProjectElement.id)
     const taskGrid = document.getElementById("task-grid")
     taskGrid.textContent = ""
 
     projectArray[currentProjectElement.id].taskArray.forEach(task => {
-        const projectTask = document.createElement("div");
-        projectTask.innerHTML = task.title
-        projectTask.classList.add("task-grid-item")
-        console.log(task)
-        taskGrid.appendChild(projectTask);
-
+        formatTask(task, taskGrid)
     })
 }
 
-function formatTask() {
-
-}
 ////////////////////////////////////////
 
 /*
@@ -106,11 +90,8 @@ function newProjectSubmit() {
 }
 
 function createProject(name) {
-    console.log(projectArray)
-    let newProject = new Project(name);
-    projectArray.push(newProject);
+    new Project(name).pushToProjectArray(projectArray)
     displayProjects()
-    console.log(projectArray)
 }
 
 function cancelNewProject() {
@@ -120,16 +101,10 @@ function cancelNewProject() {
 }
 
 function deleteProject(e){
-    // const projectList = document.getElementById("project-list");
-    // projectList.removeChild(e.target.parentElement)
-
-    console.log(projectArray)
     let indexToRemove = e.target.previousElementSibling.dataset.index
     projectArray.splice(indexToRemove, 1)
     displayProjects()
     clearCurrentProject(indexToRemove)
-    console.log(projectArray)
-
 }
 
 function clearCurrentProject(index){
@@ -152,22 +127,12 @@ function createTask(
     description,
     dueDate,
     priority,
-    difficulty
 ) {
-    console.log();
-    if (projectArray.length === 0) {
+    if (projectArray.length === 0 || project == "") {
         closeModal();
         return;
     }
-    if(project == ""){
-        closeModal();
-        return;
-    }
-
-    let newTask = new Task(title, description, dueDate, priority, difficulty);
-    projectArray[project].taskArray.push(newTask);
-    console.log(projectArray);
-
+    new Task(title, description, dueDate, priority).pushToParentProject(projectArray[project].taskArray);
     closeModal();
 }
 
@@ -182,7 +147,7 @@ function getData() {
         const dueDate = EventForm.get("dueDate");
         const priority = EventForm.get("priority");
 
-        createTask(currentProjectElement.id, title, description, dueDate, priority, "forgot to add difficulty to form D:");
+        createTask(currentProjectElement.id, title, description, dueDate, priority);
         form.reset();
 
         displayTasks()
@@ -193,6 +158,49 @@ function cancelNewTask(){
     const taskForm = document.getElementById("modal-task-body")
     taskForm.reset()
     closeModal();
+}
+
+function formatTask(task, taskGrid) {
+    const projectTask = document.createElement("div");
+
+    const projectTitle = document.createElement("p")
+    projectTitle.textContent = task.title;
+    projectTitle.classList.add("task-title")
+    projectTask.appendChild(projectTitle)
+
+    if(task.description !== ""){
+        const projectDescription = document.createElement("p")
+        projectDescription.textContent = `Description: ${task.description}`;
+        projectTask.appendChild(projectDescription)
+        console.log(task.description)
+    }
+    if(task.dueDate !== "") {
+        const projectDueDate = document.createElement("p")
+        const formattedDate = format(new Date(task.dueDate), "h':'maaa MM/dd/yyyy")
+        projectDueDate.textContent = `Due Date: ${formattedDate}`
+        projectTask.appendChild(projectDueDate)
+        console.log(task.dueDate)
+    }
+    if(task.priority != null) {
+        const projectPriority = document.createElement("p")
+        projectPriority.textContent = `Priority: ${task.priority}`
+        projectTask.appendChild(projectPriority)
+        console.log(task.priority)
+    }
+
+    const deleteTaskButton = document.createElement("button")
+    deleteTaskButton.innerHTML = "&times;"
+    deleteTaskButton.addEventListener("click", deleteTask)
+
+    // projectTask.appendChild(deleteTaskButton)
+
+    projectTask.classList.add("task-grid-item")
+
+    taskGrid.appendChild(projectTask);
+}
+
+function deleteTask(e){
+
 }
 
 /////////////////

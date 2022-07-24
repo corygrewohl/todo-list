@@ -114,6 +114,12 @@ main {
   background-color: #A393BF;
   border-radius: 8px;
   padding: 10px;
+  font-size: 20px;
+}
+
+.task-title {
+  font-size: 32px;
+  margin: 6px;
 }
 
 @media (min-width: 80em) {
@@ -194,6 +200,11 @@ main {
   margin: 10px;
   height: 30px;
   width: 300px;
+}
+
+label, option {
+  color: black;
+  font-size: 22px;
 }
 
 #submit, #cancel, #modal-container-task button {

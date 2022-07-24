@@ -1,11 +1,10 @@
 //Can create tasks that get stored in a specific project's array
 class Task {
-    constructor (title, description, dueDate, priority, difficulty) {
+    constructor (title, description, dueDate, priority) {
         this._title = title;
         this._description = description;
         this._dueDate = dueDate;
         this._priority = priority;
-        this._difficulty = difficulty;
     }
 
     pushToParentProject(parentProjectArray){
@@ -26,10 +25,6 @@ class Task {
 
     get priority(){
         return this._priority;
-    }
-
-    get difficulty(){
-        return this._difficulty;
     }
 }
 
